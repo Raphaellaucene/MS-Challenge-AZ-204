@@ -1,4 +1,4 @@
-# AZ-204 Project
+# AZ-204 File App Project
 
 ## Overview
 This project is designed to help you prepare for the Microsoft Azure AZ-204 certification exam. The AZ-204 exam tests your skills in developing solutions for Microsoft Azure, using a console app to access, crate and list containers and upload files
