@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 public class Program
 {
     //update the storageAccountName value that you recorded previously in this lab.
-    private const string storageAccountName = "stlabaz204eus2";
+    private const string storageAccountName = "storageAccount";
 
     //Update the blobServiceEndpoint value that you recorded previously in this lab.
     private const string blobServiceEndpoint = $"https://{storageAccountName}.blob.core.windows.net/";
 
 
     //update the storageAccountKey value that you recorded previously in this lab.
-    private const string storageAccountKey = "1OPwC+qwDvfghjxVE9WQo7WYbLuzIWQDZVH4GGOgPs0h/MaM1dsv7NouLCwrSGlFzqbJs8dXkNt++ASt28AiDw==";
+    private const string storageAccountKey = "secretacesskey";
 
     //The following code creates a new async Main method.
     public static async Task Main(string[] args)
