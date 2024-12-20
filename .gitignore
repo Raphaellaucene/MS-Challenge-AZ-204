@@ -1,0 +1,18 @@
+# Ignore the bin and obj directories
+dotnet/bin/
+dotnet/obj/
+
+# Ignore the .user files
+dotnet/*.csproj.user
+
+# Ignore global Visual Studio files
+.vscode/
+.vs/
+*.sln.docstates
+
+# Ignore build results
+bin/
+obj/
+
+# Ignore local configuration
+appsettings.Local.json
