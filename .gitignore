@@ -1,9 +1,9 @@
 # Ignore the bin and obj directories
-dotnet/bin/
-dotnet/obj/
+FileApp/dotnet/bin/
+FileApp/dotnet/obj/
 
 # Ignore the .user files
-dotnet/*.csproj.user
+FileApp/dotnet/*.csproj.user
 
 # Ignore global Visual Studio files
 .vscode/

@@ -30,12 +30,28 @@ This project is designed to help you prepare for the Microsoft Azure AZ-204 cert
     ```sh
     dotnet add package Azure.Storage.Blobs
     ```
-
 ## Usage
 1. Open the project in your preferred IDE.
 2. Create a storage account with public access
 3. Change the env variables to storage account name, secret and connection string
 
+# AZ-204 Cosmos App Project
+
+## Overview
+Test your skills developing a solution using a console app to crate a Azure Cosmos DB database on Azure, configure a console app, connect to Cosmos DB, create and list containers
+
+## Installation
+1. Azure Cosmos DB:
+    ```sh
+    pip install azure-cosmos
+    ```
+2. Variaveis de ambiente:
+    ```sh
+    pip install python-dotenv
+    ```
+3. Install the required dependencies:
+    ```sh
+    dotnet add package Azure.Storage.Blobs
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
