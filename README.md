@@ -35,7 +35,7 @@ This project is designed to help you prepare for the Microsoft Azure AZ-204 cert
 2. Create a storage account with public access
 3. Change the env variables to storage account name, secret and connection string
 
-# AZ-204 Cosmos App Project
+# Cosmos App Project
 
 ## Overview
 Test your skills developing a solution using a console app to crate a Azure Cosmos DB database on Azure, configure a console app, connect to Cosmos DB, create and list containers
@@ -52,6 +52,28 @@ Test your skills developing a solution using a console app to crate a Azure Cosm
 3. Install the required dependencies:
     ```sh
     dotnet add package Azure.Storage.Blobs
+
+# Azure Container
+
+## Overview
+Use ACR service (Azure Conatainer Registry) to developing containers and pipelines or using ACR Task to create container images to Azure.
+Use ACI (Azure Container instance) to execute this images created previosly using CLI
+
+### ACR
+- Explain the benefits using ACR
+- Describe how to using ACR's Task to create automatic builds and deploy
+- Explain Dockerfile elements
+- Create and run a ACR image using Azure CLI
+
+### ACI
+- Container Groups
+- Explain restart policy
+- YAML volume
+
+# Tier
+- Basic
+- Standart
+- Premium
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).

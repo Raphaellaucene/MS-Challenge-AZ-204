@@ -1,0 +1,21 @@
+az group create --name rgaz-204-acr --location eastus2
+
+az acr create --resource-group rgaz-204-acr \
+    --name acrwareaz204 \
+    --sku Basic
+
+echo "FROM mcr.microsoft.com/hello-world" > Dockerfile
+
+az acr build --image sample/hello-world:v1 \
+    --registry acrwareaz204 \
+    --file Dockerfile .
+
+az acr repository show-tags \
+    --name acrwareaz204 \
+    --repository sample/hello-world \
+    --output table
+
+az acr run --registry acrwareaz204 \
+--cmd '$Registry/sample/hello-world:v1' /dev/null
+
+az group delete --name rgaz-204-acr --no-wait

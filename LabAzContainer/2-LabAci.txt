@@ -1,0 +1,16 @@
+az group create --name az204-aci-rg --location eastus
+
+DNS_NAME_LABEL=aci-example-$RANDOM
+
+az container create --resource-group az204-aci-rg \
+    --name ctnwareaz204 \
+    --image mcr.microsoft.com/azuredocs/aci-helloworld \
+    --port 80 \
+    --dns-name-label $DNS_NAME_LABEL --location eastus
+
+az container show --resource-group az204-aci-rg \
+--name ctnwareaz204 \
+--query "{FQDN:ipAddress.fqdn,ProvisioningState:provisioningState}" \
+--out table
+
+az group delete --name az204-aci-rg --no-wait --yes
