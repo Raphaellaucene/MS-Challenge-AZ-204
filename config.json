@@ -1,0 +1,43 @@
+"containers": [
+    {
+        "name": "main",
+        "image": "[parameters('container_image')]",
+        "env": [
+            {
+                "name": "HTTP_PORT",
+                "value": 80
+            },
+            {
+                "name": "SECRET_VALUE",
+                "value": "mysecret"
+            }
+        ],
+        "resources": {
+            "cpu": 0.5,
+            "memory": "1Gi",
+        },
+        "volumeMounts": [
+            {
+                "mountPath": "/myfile",
+                "volumeName": "az-file-volume",
+            }
+        ],
+        "probes": [
+            {
+                "type": "liveness",
+                "httpGet": {
+                    "path": "/health",
+                    "port": 8080,
+                    "httpHeaders": [
+                        {
+                            "name": "Custom-Header",
+                            "value": "liveness probe"
+                        }
+                    ]
+                },
+                "initialDelaySeconds": 5,
+                "periodSeconds": 3,
+            }
+        ]
+    }
+]
