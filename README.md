@@ -11,7 +11,6 @@ This project is designed to help you prepare for the Microsoft Azure AZ-204 cert
 - Python installed
 
 # FileApp
-## Overwiew
 Build a console app to access, crate and list containers and upload files, using .net and python
 
 ## Project Structure
@@ -40,8 +39,6 @@ Build a console app to access, crate and list containers and upload files, using
 3. Change the env variables to storage account name, secret and connection string
 
 # Cosmos App Project
-
-## Overview
 Test your skills developing a solution using a console app to crate a Azure Cosmos DB database on Azure, configure a console app, connect to Cosmos DB, create and list containers
 
 ## Installation
@@ -58,8 +55,6 @@ Test your skills developing a solution using a console app to crate a Azure Cosm
     dotnet add package Azure.Storage.Blobs
 
 # Azure Container
-
-## Overview
 Use ACR service (Azure Conatainer Registry) to developing containers and pipelines or using ACR Task to create container images to Azure.
 Use ACI (Azure Container instance) to execute this images created previosly using CLI
 
@@ -80,7 +75,6 @@ Use ACI (Azure Container instance) to execute this images created previosly usin
 - Premium
 
 # Container App
-## Overview
 Azure Container Apps is a fully managed serverless platform that allows you to run containerized applications without worrying about infrastructure management.
 
 - **Serverless Management**: Azure Container Apps handles server configuration, container orchestration, and deployment details, allowing you to focus on your application.
@@ -98,7 +92,6 @@ Azure Container Apps is a fully managed serverless platform that allows you to r
 - **Security and Monitoring**: Securely manage secrets, monitor logs using Azure Log Analytics, and use internal ingress for secure endpoints.
 
 # Hands-on
-## Overwiew
 Deploy workloads using images and containers. In this lab, we deploy a simple app for check if the network is available and, if so, retrieves and displays the current IP addresses of the host machine.
 
 ![alt text](image.png)
@@ -159,6 +152,102 @@ Deploy workloads using images and containers. In this lab, we deploy a simple ap
 14. Enable admin user:
     ```sh
     az acr update -n $acrName --admin-enable true
+
+
+# Microsoft Authentication Library (MSAL)
+is a library developed by Microsoft that helps applications authenticate users and acquire tokens to access protected resources. 
+
+
+# Shared Access Signature (SAS)
+is a URI that grants restricted access rights to Azure Storage resources. With SAS, you can provide limited access to containers, blobs, queues, and tables without sharing your account key. SAS tokens can be configured with specific permissions, start and expiry times, and IP address ranges.
+
+### Types of SAS
+1. **User Delegation SAS**: Uses Azure Active Directory (Azure AD) credentials to delegate access.
+2. **Service SAS**: Grants access to specific resources in a storage account.
+3. **Account SAS**: Grants access to resources in a storage account, such as service-level operations.
+
+### Benefits
+- **Granular Control**: Specify permissions, start and expiry times, and allowed IP ranges.
+- **Security**: Avoid sharing account keys and use HTTPS to secure the SAS token.
+- **Flexibility**: Generate SAS tokens for different types of access and resources.
+
+### Example
+To generate a SAS token for a blob, you can use Azure CLI:
+```sh
+az storage blob generate-sas --account-name <account_name> --container-name <container_name> --name <blob_name> --permissions r --expiry <expiry_time> --https-only
+```
+This command generates a SAS token with read permissions for a specific blob, valid until the specified expiry time.
+
+
+# Microsoft Graph
+Microsoft Graph is a unified API endpoint provided by Microsoft that allows developers to access a wide range of Microsoft 365 services and data. It enables you to interact with resources such as users, groups, mail, calendars, contacts, files, and more.
+
+## Key Features
+- **Unified API**: Access multiple Microsoft 365 services through a single endpoint.
+- **Rich Data**: Retrieve information about users, groups, mail, calendars, contacts, files, and more.
+- **Cross-Platform**: Use Microsoft Graph in web, mobile, and desktop applications.
+- **Security**: Leverage Azure Active Directory for authentication and authorization.
+- **Insights and Analytics**: Gain insights into user activity and organizational data.
+
+## Common Use Cases
+- **User Management**: Create, read, update, and delete user profiles and manage group memberships.
+- **Mail and Calendar**: Access and manage emails, calendar events, and contacts.
+- **Files and Drives**: Work with files stored in OneDrive and SharePoint.
+- **Notifications**: Send notifications to users and groups.
+- **Reports and Insights**: Generate reports and gain insights into organizational data.
+
+# Hands-on
+Configure Entra ID sigle tenant and Create an ASP.NET web app. We register am app at Entra ID, using Graph explores for testing request at API for users account
+
+![alt text](image-1.png)
+
+## Configurations using Az PS
+1. Connect Entra ID:
+    ```ps
+    Connect-AzureAD
+    ```
+2. Get Domain name:
+    ```ps
+    $aadDomainName = ((Get-AzureAdTenantDetail).VerfiedDomains)[0].Name
+    ```
+3. Get Password Profile:
+    ```ps
+    $passwordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+
+4. Set pass:
+    ```ps
+    $passwordProfile.Password = 'Pa55w@rd'
+
+5. Set false to force Change Password:
+    ```ps
+    $passwordProfile.ForceChangePasswordNextLogin - $false
+
+6. Create new user:
+    ```ps
+    New-AzureADUser -AccountEnabled $true -DisplayName 'aad lab user' -PasswordProfile $passwordProfile -MailNickName 'aad_lab_user -UserPrincipalName "aad_lab_user@$aadDomainName"
+
+7. List new user:
+    ```ps
+    (Get-AzureADUser -Filter "MailNickName eq 'aad_lab_user'").UserPrincipalName
+
+8. New MVC:
+    ```ps
+    dotnet new mvc --auth SingleOrg --client-id <clientid> --tenant-id <tenantid> --domain <yourdomain.com>
+
+7. Create a self-signed certificate:
+    ```ps
+    dotnet dev-certs http --trust
+
+
+
+### Example
+To retrieve a list of users in your organization, you can use the following HTTP request:
+```http
+GET https://graph.microsoft.com/v1.0/users
+```
+This request returns a JSON response containing details about the users in your organization.
+
+For more information, visit the [Microsoft Graph documentation](https://docs.microsoft.com/en-us/graph/overview).
 
 
 ## Contact
