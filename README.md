@@ -196,6 +196,16 @@ Microsoft Graph is a unified API endpoint provided by Microsoft that allows deve
 - **Notifications**: Send notifications to users and groups.
 - **Reports and Insights**: Generate reports and gain insights into organizational data.
 
+### Example
+To retrieve a list of users in your organization, you can use the following HTTP request:
+```http
+GET https://graph.microsoft.com/v1.0/users
+```
+This request returns a JSON response containing details about the users in your organization.
+
+For more information, visit the [Microsoft Graph documentation](https://docs.microsoft.com/en-us/graph/overview).
+
+
 # Hands-on
 Configure Entra ID sigle tenant and Create an ASP.NET web app. We register am app at Entra ID, using Graph explores for testing request at API for users account
 
@@ -238,16 +248,64 @@ Configure Entra ID sigle tenant and Create an ASP.NET web app. We register am ap
     ```ps
     dotnet dev-certs http --trust
 
+# Azure Key Vault
+Azure Key Vault is a cloud service that provides a secure store for secrets, keys, and certificates. It helps safeguard cryptographic keys and secrets used by cloud applications and services.
 
+## Key Features
+- **Secrets Management**: Securely store and manage sensitive information such as passwords, connection strings, and API keys.
+- **Key Management**: Create and control the encryption keys used to encrypt your data.
+- **Certificate Management**: Provision, manage, and deploy public and private SSL/TLS certificates.
+- **Access Policies**: Define and enforce access policies to control who and what can access your secrets, keys, and certificates.
+- **Monitoring and Logging**: Integrate with Azure Monitor to track and log access to your Key Vault.
 
-### Example
-To retrieve a list of users in your organization, you can use the following HTTP request:
-```http
-GET https://graph.microsoft.com/v1.0/users
+## Benefits
+- **Enhanced Security**: Protect sensitive data with hardware security modules (HSMs) and role-based access control (RBAC).
+- **Centralized Management**: Manage all your secrets, keys, and certificates in a single, centralized location.
+- **Compliance**: Meet compliance requirements with built-in security features and audit logs.
+- **Scalability**: Scale seamlessly with your cloud applications and services.
+
+## Example
+To create a new Key Vault using Azure CLI, you can use the following command:
+```sh
+az keyvault create --name <keyvault_name> --resource-group <resource_group> --location <location>
 ```
-This request returns a JSON response containing details about the users in your organization.
+This command creates a new Key Vault in the specified resource group and location.
 
-For more information, visit the [Microsoft Graph documentation](https://docs.microsoft.com/en-us/graph/overview).
+For more information, visit the [Azure Key Vault documentation](https://docs.microsoft.com/en-us/azure/key-vault/).
+
+
+# Azure Managed Identity
+Azure Managed Identity is a feature of Microsoft EntraID that provides Azure services with an automatically managed identity in EntraID. This identity can be used to authenticate to any service that supports Azure AD authentication, without needing to manage credentials.
+
+## Key Features
+- **Credential Management**: Eliminates the need to manage credentials by providing an automatically managed identity.
+- **Secure Access**: Enables secure access to Azure resources by using EntraID authentication.
+- **Integration**: Easily integrates with Azure services such as Azure Key Vault, Azure Storage, and Azure SQL Database.
+
+## Types of Managed Identities
+1. **System-assigned Managed Identity**: Automatically created and managed by Azure for a specific Azure resource. When the resource is deleted, the identity is also deleted.
+2. **User-assigned Managed Identity**: Created as a standalone Azure resource and can be assigned to one or more Azure resources. The identity persists even if the resources it is assigned to are deleted.
+
+## Benefits
+- **Simplified Credential Management**: No need to manually manage credentials or rotate secrets.
+- **Improved Security**: Reduces the risk of credential exposure by using Azure AD authentication.
+- **Seamless Integration**: Works seamlessly with Azure services that support Azure AD authentication.
+
+## Example
+To create a identity:
+```sh
+az identity create -g <resource_group> -n myUserAssignedIdentity
+```
+
+To create a identity for an Azure Virtual Machine using Azure CLI, you can use the following command:
+```sh
+az vm identity assign --name <vm_name> --resource-group <resource_group>
+```
+This command assigns a system-assigned managed identity to the specified virtual machine.
+
+
+For more information, visit the [Azure Managed Identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
+
 
 
 ## Contact
