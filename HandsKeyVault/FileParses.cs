@@ -20,12 +20,20 @@ namespace HandsKeyVault
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
-            string connectionString = Environment.GetEnvironmentVariable("StorageConnectionString");
-            response.WriteString(connectionString);
+            // Get the connection string from the environment
+            string ConnectionString = Environment.GetEnvironmentVariable("StorageConnectionString");
 
-            return Task.FromResult(response);
+            // Get the blob client
+            BlobClient blob = new BlobClient(ConnectionString, "drop", "records.json");
+
+            // Download the blob's contents and save it to a file
+            BlobDownloadResult downloadResult = blob.DownloadContent();
+
+            // Retrieve the blob's content and convert it to a string
+            await response.WriteStringAsync(downloadResult.Content.ToString());
+
+            return response;
         }
     }
 }
