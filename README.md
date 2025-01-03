@@ -303,10 +303,105 @@ az vm identity assign --name <vm_name> --resource-group <resource_group>
 ```
 This command assigns a system-assigned managed identity to the specified virtual machine.
 
-
 For more information, visit the [Azure Managed Identity documentation](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview).
 
 
+# API Management
+Azure API Management is a fully managed service that enables organizations to publish, secure, transform, maintain, and monitor APIs. It helps you manage the entire API lifecycle from creation to retirement.
+
+## Key Features
+- **API Gateway**: Acts as a facade for backend services, providing a single entry point for API consumers.
+- **Developer Portal**: Allows developers to discover, learn about, and consume APIs. It includes interactive API documentation and a console for testing APIs.
+- **Policy Engine**: Enables you to define and enforce policies such as rate limiting, IP filtering, and transformation on APIs.
+- **Analytics and Monitoring**: Provides insights into API usage, performance, and health through built-in analytics and monitoring tools.
+- **Security**: Supports various authentication mechanisms, including OAuth 2.0, JWT validation, and client certificate authentication.
+- **Versioning and Revisioning**: Allows you to manage multiple versions and revisions of your APIs, ensuring backward compatibility and smooth transitions.
+
+## Benefits
+- **Centralized Management**: Manage all your APIs in a single, centralized location.
+- **Enhanced Security**: Protect your APIs with advanced security features and policies.
+- **Improved Performance**: Optimize API performance with caching, rate limiting, and load balancing.
+- **Developer Engagement**: Foster a developer community with a customizable developer portal.
+- **Scalability**: Scale your API management solution to meet the needs of your growing user base.
+
+## Example
+To create an API Management instance using Azure CLI, you can use the following command:
+```sh
+az apim create --name <apim_name> --resource-group <resource_group> --publisher-email <email> --publisher-name <name>
+```
+This command creates a new API Management instance in the specified resource group with the provided publisher details.
+
+For more information, visit the [Azure API Management documentation](https://docs.microsoft.com/en-us/azure/api-management/).
+
+![alt text](image-2.png)
+
+# HandsOnValidaCPF
+
+The HandsOnValidaCPF project is designed to validate Brazilian CPF numbers. This project includes methods and functions to verify the validity of a CPF number.
+
+## Methods and Functions
+
+### `ValidaCPF(cpf: string) -> bool`
+This function checks if a given CPF number is valid.
+
+**Parameters:**
+- `cpf` (string): The CPF number to be validated.
+
+**Returns:**
+- `bool`: `True` if the CPF is valid, `False` otherwise.
+
+**Example:**
+```csharp
+using ValidaCPF;
+
+string cpf = "123.456.789-09";
+if (fnvalidacpf.ValidaCPF(cpf))
+{
+    Console.WriteLine("The CPF is valid.");
+}
+else
+{
+    Console.WriteLine("The CPF is invalid.");
+}
+```
+
+## Deploying the Function Locally
+
+1. Create a new Azure Functions project:
+    ```sh
+    func init MyFunctionProj --worker-runtime dotnet
+    ```
+
+2. Create a new function:
+    ```sh
+    func new --name ValidateCPF --template "HTTP trigger"
+    ```
+
+3. Implement the function logic in `ValidateCPF.cs`.
+
+4. Run the function locally:
+    ```sh
+    func start
+    ```
+
+## Deploying the Function to Azure
+
+1. Create a new Azure Function App:
+    ```sh
+    az functionapp create --resource-group <resource_group> --consumption-plan-location <location> --runtime dotnet --functions-version 3 --name <function_app_name> --storage-account <storage_account_name>
+    ```
+
+2. Deploy the function code:
+    ```sh
+    func azure functionapp publish <function_app_name>
+    ```
+
+3. Test the function using the Azure portal or Azure CLI:
+    ```sh
+    az functionapp function show --resource-group <resource_group> --name <function_app_name> --function-name ValidateCPF
+    ```
+
+For more information, visit the [Azure Functions documentation](https://docs.microsoft.com/en-us/azure/azure-functions/).
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
