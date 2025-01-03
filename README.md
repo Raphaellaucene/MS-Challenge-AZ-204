@@ -98,7 +98,7 @@ Azure Container Apps is a fully managed serverless platform that allows you to r
 
 - **Security and Monitoring**: Securely manage secrets, monitor logs using Azure Log Analytics, and use internal ingress for secure endpoints.
 
-# Hands-on
+# Hands-on Container
 Deploy workloads using images and containers. In this lab, we deploy a simple app for check if the network is available and, if so, retrieves and displays the current IP addresses of the host machine.
 
 ![alt text](image.png)
@@ -242,12 +242,12 @@ This request returns a JSON response containing details about the users in your 
 For more information, visit the [Microsoft Graph documentation](https://docs.microsoft.com/en-us/graph/overview).
 
 
-# Hands-on
+# Hands-on Auth
 Configure Entra ID sigle tenant and Create an ASP.NET web app. We register am app at Entra ID, using Graph explores for testing request at API for users account
 
 ![alt text](image-1.png)
 
-## Configurations using Az PS
+## Configurations using AZ PS
 1. Connect Entra ID:
     ```ps
     Connect-AzureAD
@@ -371,7 +371,7 @@ For more information, visit the [Azure API Management documentation](https://doc
 
 ![alt text](image-2.png)
 
-# HandsOnValidaCPF
+# Hands-On Validate CPF
 
 The HandsOnValidaCPF project is designed to validate Brazilian CPF numbers. This project includes methods and functions to verify the validity of a CPF number.
 
