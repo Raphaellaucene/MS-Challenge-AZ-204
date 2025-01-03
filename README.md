@@ -54,6 +54,13 @@ Test your skills developing a solution using a console app to crate a Azure Cosm
     ```sh
     dotnet add package Azure.Storage.Blobs
 
+For more information, please refer to the official documentation:
+- .NET Documentation: https://learn.microsoft.com/dotnet
+- Creating an App: https://learn.microsoft.com/azure/app-service/quickstart-dotnetcore
+- Creating an App using Python: https://learn.microsoft.com/azure/app-service/quickstart-python
+- Using Azure Storage Account: https://learn.microsoft.com/azure/storage/common/storage-account-overview
+- Using Azure Cosmos DB: https://learn.microsoft.com/azure/cosmos-db/introduction
+
 # Azure Container
 Use ACR service (Azure Conatainer Registry) to developing containers and pipelines or using ACR Task to create container images to Azure.
 Use ACI (Azure Container instance) to execute this images created previosly using CLI
@@ -155,7 +162,35 @@ Deploy workloads using images and containers. In this lab, we deploy a simple ap
 
 
 # Microsoft Authentication Library (MSAL)
-is a library developed by Microsoft that helps applications authenticate users and acquire tokens to access protected resources. 
+Microsoft Authentication Library (MSAL) is a library developed by Microsoft that helps applications authenticate users and acquire tokens to access protected resources. It supports various authentication flows and integrates with Azure Active Directory (Azure AD) to provide secure access to Microsoft services and APIs.
+
+## Key Features
+- **Cross-Platform**: Available for .NET, JavaScript, Java, Python, and other platforms.
+- **Single Sign-On (SSO)**: Provides SSO capabilities across applications.
+- **Token Acquisition**: Acquires tokens for accessing Microsoft Graph, Azure services, and other APIs.
+- **Secure Storage**: Securely stores tokens and credentials.
+- **Support for Multiple Accounts**: Manages multiple user accounts and tenants.
+
+## Common Use Cases
+- **Web Applications**: Authenticate users and acquire tokens for accessing APIs.
+- **Mobile Applications**: Enable secure sign-in and token acquisition on mobile devices.
+- **Desktop Applications**: Integrate authentication and token management in desktop apps.
+- **Daemon Services**: Acquire tokens for background services and daemons.
+
+## Example
+To acquire a token using MSAL in a .NET application:
+```csharp
+var app = PublicClientApplicationBuilder.Create(clientId)
+    .WithAuthority(AzureCloudInstance.AzurePublic, tenantId)
+    .Build();
+
+var result = await app.AcquireTokenInteractive(scopes)
+    .ExecuteAsync();
+
+Console.WriteLine($"Token: {result.AccessToken}");
+```
+
+For more information, visit the [MSAL documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-overview).
 
 
 # Shared Access Signature (SAS)
@@ -178,6 +213,7 @@ az storage blob generate-sas --account-name <account_name> --container-name <con
 ```
 This command generates a SAS token with read permissions for a specific blob, valid until the specified expiry time.
 
+For more information about SAS on Azure, you can refer to the official documentation: https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview
 
 # Microsoft Graph
 Microsoft Graph is a unified API endpoint provided by Microsoft that allows developers to access a wide range of Microsoft 365 services and data. It enables you to interact with resources such as users, groups, mail, calendars, contacts, files, and more.
