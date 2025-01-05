@@ -439,5 +439,64 @@ else
 
 For more information, visit the [Azure Functions documentation](https://docs.microsoft.com/en-us/azure/azure-functions/).
 
+# Azure Event Hub
+Azure Event Hub is a fully managed, real-time data ingestion service that is capable of receiving and processing millions of events per second. It is designed to help you build dynamic data pipelines and respond to business challenges in real-time.
+
+## Key Features
+- **High Throughput**: Capable of ingesting millions of events per second, making it suitable for large-scale data ingestion scenarios.
+- **Real-Time Processing**: Supports real-time analytics and event processing with low latency.
+- **Partitioning**: Allows you to partition data streams to enable parallel processing and scalability.
+- **Capture**: Automatically captures streaming data into Azure Blob Storage or Azure Data Lake for long-term retention and batch processing.
+- **Integration**: Integrates seamlessly with other Azure services such as Azure Stream Analytics, Azure Functions, and Azure Data Factory.
+
+## Common Use Cases
+- **Telemetry Ingestion**: Collect and analyze telemetry data from IoT devices, applications, and infrastructure.
+- **Log and Event Data**: Ingest and process log and event data from various sources for monitoring and diagnostics.
+- **Real-Time Analytics**: Perform real-time analytics on streaming data to gain insights and make data-driven decisions.
+- **Data Streaming**: Stream data to multiple downstream systems for further processing and analysis.
+
+## Example
+To create an Event Hub namespace and an Event Hub using Azure CLI:
+```sh
+# Create a resource group
+az group create --name <resource_group> --location <location>
+
+# Create an Event Hub namespace
+az eventhubs namespace create --name <namespace_name> --resource-group <resource_group> --location <location>
+
+# Create an Event Hub
+az eventhubs eventhub create --name <eventhub_name> --namespace-name <namespace_name> --resource-group <resource_group>
+```
+
+For more information, visit the [Azure Event Hub documentation](https://docs.microsoft.com/en-us/azure/event-hubs/).
+
+# Hands-On Event Hub
+
+This example demonstrates how to create a console application in C# that publishes events to Azure Event Grid. 
+
+Here's a step-by-step:
+
+Check the registration state of the Microsoft.EventGrid resource provider:
+```sh
+az provider show --namespace Microsoft.EventGrid --query "registrationState"
+```
+
+If it shows "NotRegistered", register the provider using the following command:
+```sh
+az provider register --namespace Microsoft.EventGrid
+```
+
+Create new console app localy for Event Publisher
+```sh
+dotnet new console --framework net8.0 --name EventPublisher --output .
+```
+
+Add package
+```sh
+dotnet add package Azure.Messaging.EventGrid --version 4.11.0
+```
+
+![alt text](image-3.png)
+
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
