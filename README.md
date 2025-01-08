@@ -472,7 +472,9 @@ For more information, visit the [Azure Event Hub documentation](https://docs.mic
 
 # Hands-On Event Hub
 
-This example demonstrates how to create a console application in C# that publishes events to Azure Event Grid. 
+This example demonstrates how to create a console application in C# that publishes events to Azure Event Grid.
+
+![alt text](image-3.png)
 
 Here's a step-by-step:
 
@@ -496,7 +498,64 @@ Add package
 dotnet add package Azure.Messaging.EventGrid --version 4.11.0
 ```
 
-![alt text](image-3.png)
+# Azure Service Bus
+Azure Service Bus is a fully managed enterprise message broker that allows you to decouple applications and services. It provides reliable and secure asynchronous communication between distributed systems.
+
+## Key Features
+- **Message Queues**: Enable asynchronous communication by sending and receiving messages through queues.
+- **Topics and Subscriptions**: Support publish/subscribe messaging patterns with topics and subscriptions.
+- **Advanced Messaging Features**: Include message sessions, dead-lettering, scheduled delivery, and message deferral.
+- **Security**: Ensure secure communication with built-in encryption and role-based access control (RBAC).
+- **Integration**: Integrate seamlessly with other Azure services such as Azure Logic Apps, Azure Functions, and Azure Event Grid.
+
+## Common Use Cases
+- **Decoupling Applications**: Decouple components of a distributed application to improve scalability and reliability.
+- **Load Leveling**: Smooth out peaks in traffic by queuing messages and processing them at a steady rate.
+- **Order Processing**: Ensure ordered processing of messages with message sessions.
+- **Event Distribution**: Distribute events to multiple subscribers using topics and subscriptions.
+
+## Example
+To create a Service Bus namespace and a queue using Azure CLI:
+```sh
+# Create a resource group
+az group create --name <resource_group> --location <location>
+
+# Create a Service Bus namespace
+az servicebus namespace create --name <namespace_name> --resource-group <resource_group> --location <location>
+
+# Create a Service Bus queue
+az servicebus queue create --name <queue_name> --namespace-name <namespace_name> --resource-group <resource_group>
+```
+
+For more information, visit the [Azure Service Bus documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/).
+
+## Hands-On Queue
+
+This example demonstrates how to create a console application in C# that sends messages to an Azure Service Bus queue.
+
+1. Create a new console application:
+    ```sh
+    dotnet new console --framework net8.0 --name ServiceBusSender --output .
+    ```
+
+2. Add Service Bus package:
+    ```sh
+    dotnet add package Azure.Messaging.ServiceBus
+    ```
+
+3. Implemented the logic to send messages to the Service Bus queue in `Program.cs`.
+
+4. Run the application:
+    ```sh
+    dotnet run
+    ```
+
+For more information, visit the [Azure Service Bus documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/).
+
+# Hands-On API's
+
+![alt text](image-4.png)
+
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
