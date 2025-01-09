@@ -553,9 +553,69 @@ This example demonstrates how to create a console application in C# that sends m
 For more information, visit the [Azure Service Bus documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/).
 
 # Hands-On API's
+This section provides practical exercises and examples to help you understand and implement CI/CD on Azure DevOps.
+
+
+This project includes a CI/CD pipeline configured using Azure Pipelines. The pipeline automates the process of building, testing, and deploying the application.
 
 ![alt text](image-4.png)
 
+### Pipeline Configuration
+
+The pipeline is defined in the `azure-pipelines.yml` file and includes the following stages:
+
+1. **Trigger**: The pipeline is triggered on changes to the `main` branch.
+2. **Pool**: Uses the `ubuntu-latest` VM image.
+3. **Variables**: Defines variables for the solution file, build platform, and build configuration.
+4. **Steps**:
+    - **UseDotNet@2**: Installs the .NET SDK.
+    - **dotnet restore**: Restores the solution.
+    - **dotnet build**: Builds the solution.
+    - **dotnet test**: Runs tests and collects code coverage.
+    - **Docker@2**: Builds and pushes Docker images to Azure Container Registry.
+
+### Example
+
+Here is an example of the `azure-pipelines.yml` file:
+
+```yaml
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  solution: './apiTempo/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  system.debug: true
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Install .Net SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+
+- script: dotnet restore $(solution)
+  displayName: 'Restore Solution'
+
+- script: dotnet build $(solution) --configuration $(buildConfiguration)
+  displayName: 'Build Solution'
+
+- script: dotnet test $(solution) --configuration $(buildConfiguration) --no-build --collect:"XPlat Code Coverage"
+  displayName: 'Test Solution'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'acrapiwarelab'
+    repository: 'api-dio-test'
+    command: 'buildAndPush'
+    Dockerfile: '$(Build.SourcesDirectory)/apiTemp/apiTemp/Dockerfile'
+```
+
+For more information on setting up CI/CD pipelines, refer to the [Azure Pipelines documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops).
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
