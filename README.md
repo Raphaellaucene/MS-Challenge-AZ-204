@@ -614,8 +614,56 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '$(Build.SourcesDirectory)/apiTemp/apiTemp/Dockerfile'
 ```
-
 For more information on setting up CI/CD pipelines, refer to the [Azure Pipelines documentation](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops).
+
+
+# Application Insights
+Azure Application Insights is an extensible Application Performance Management (APM) service for web developers on multiple platforms. It helps you monitor your live applications, detect performance anomalies, and diagnose issues to understand what users do with your app.
+
+## Key Features
+- **Automatic Instrumentation**: Automatically collects telemetry data from your application, including request rates, response times, and failure rates.
+- **Custom Telemetry**: Allows you to track custom events and metrics to gain deeper insights into your application's performance.
+- **Dependency Tracking**: Monitors external service dependencies, such as databases and REST APIs, to identify performance bottlenecks.
+- **Analytics and Dashboards**: Provides powerful analytics tools and customizable dashboards to visualize and analyze telemetry data.
+- **Alerts and Notifications**: Set up alerts to notify you of performance issues, failures, or other significant events in your application.
+- **Integration**: Integrates seamlessly with other Azure services, such as Azure DevOps, Azure Monitor, and Azure Log Analytics.
+
+## Benefits
+- **Proactive Monitoring**: Detect and diagnose issues before they impact users.
+- **Improved Performance**: Identify and resolve performance bottlenecks to improve the user experience.
+- **Enhanced Visibility**: Gain insights into how users interact with your application and how it performs under different conditions.
+- **Scalability**: Scale your monitoring solution to handle applications of any size and complexity.
+
+## Hands-On Application Insights
+To set up Application Insights for an ASP.NET Core application, follow these steps:
+
+1. Create a web api:
+    ```sh
+    dotnet new webapi --output . --name SimpleApi --framework net8.0
+    ```
+2. Install the Application Insights SDK:
+    ```sh
+    dotnet add package Microsoft.ApplicationInsights.AspNetCore
+    ```
+3. Install the Performance Counter Collector:
+    ```sh
+    dotnet add package Microsoft.ApplicationInsights.PerfCounterCollector
+    ```
+4. Install the Profiler:
+    ```sh
+    dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
+    ```
+5. Publish locally:
+    ```sh
+    dotnet publish -c Release -r win-x86 --self-contained -p:PublishReadyToRun=true .\SimpleApi.csproj
+    ```
+5. Build and generate a localhost API URL:
+    ```sh
+    dotnet run
+    ```
+
+For more information, visit the [Azure Application Insights documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview).
+
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
