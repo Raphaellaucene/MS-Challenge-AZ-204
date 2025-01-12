@@ -664,6 +664,72 @@ To set up Application Insights for an ASP.NET Core application, follow these ste
 
 For more information, visit the [Azure Application Insights documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview).
 
+# Azure Cache for Redis
+Azure Cache for Redis is a fully managed, in-memory cache service that provides high-performance and scalable caching capabilities for your applications. It is based on the popular open-source Redis cache and is designed to handle large-scale, low-latency data access scenarios.
+
+## Key Features
+- **High Performance**: Delivers sub-millisecond response times, making it ideal for high-throughput and low-latency applications.
+- **Scalability**: Supports scaling up and down to meet the demands of your application, with options for clustering to distribute data across multiple nodes.
+- **Persistence**: Offers data persistence options to ensure data durability and recovery in case of failures.
+- **Security**: Provides advanced security features, including network isolation, encryption, and integration with Azure Active Directory for access control.
+- **Monitoring and Management**: Includes built-in monitoring and management tools to track performance, set up alerts, and manage your cache instances.
+
+## Common Use Cases
+- **Caching**: Store frequently accessed data in memory to reduce latency and improve application performance.
+- **Session Store**: Manage user sessions in a distributed cache to enable fast and scalable session management.
+- **Real-Time Analytics**: Perform real-time data processing and analytics by caching intermediate results and frequently accessed data.
+- **Message Broker**: Use Redis as a lightweight message broker to enable real-time communication between distributed components.
+
+## Example Redis Console App
+To create an Azure Cache for Redis instance using Azure CLI:
+```sh
+# Create a resource group
+az group create --name <resource_group> --location <location>
+
+# Create a Redis cache instance
+az redis create --name redisName --resource-group Az-204 --location EastUs2 --sku Basic --vm-size c0
+
+# Create a new console app
+dotnet new console
+
+# Add package
+dotnet add package StackExchange.Redis
+```
+
+For more information, visit the [Azure Cache for Redis documentation](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/).
+
+# Azure Content Delivery Network (CDN)
+Azure Content Delivery Network (CDN) is a global caching and content delivery solution that helps deliver high-bandwidth content to users with low latency and high availability. It caches content at strategically placed edge locations around the world, ensuring that users can access data from a location geographically closer to them.
+
+## Key Features
+- **Global Reach**: Delivers content from a vast network of edge servers located around the world.
+- **Low Latency**: Reduces latency by serving content from the nearest edge location to the user.
+- **High Availability**: Ensures high availability and reliability with multiple edge locations and failover capabilities.
+- **Scalability**: Scales automatically to handle high traffic loads and sudden spikes in demand.
+- **Security**: Provides advanced security features, including HTTPS support, custom domain HTTPS, and DDoS protection.
+- **Custom Rules**: Allows you to define custom caching rules, geo-filtering, and URL rewriting to optimize content delivery.
+
+## Common Use Cases
+- **Web Content Delivery**: Accelerate the delivery of web pages, images, videos, and other static content.
+- **Streaming Media**: Stream video and audio content with low latency and high quality.
+- **Software Distribution**: Distribute software updates, patches, and applications efficiently.
+- **API Acceleration**: Improve the performance of APIs by caching responses at edge locations.
+- **E-commerce**: Enhance the performance and reliability of e-commerce websites by caching product images, catalogs, and other static assets.
+
+## Example
+To create a CDN profile and endpoint using Azure CLI:
+```sh
+# Create a resource group
+az group create --name <resource_group> --location <location>
+
+# Create a CDN profile
+az cdn profile create --name <profile_name> --resource-group <resource_group> --location <location> --sku Standard_Verizon
+
+# Create a CDN endpoint
+az cdn endpoint create --name <endpoint_name> --profile-name <profile_name> --resource-group <resource_group> --origin <origin_hostname>
+```
+
+For more information, visit the [Azure CDN documentation](https://docs.microsoft.com/en-us/azure/cdn/).
 
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
