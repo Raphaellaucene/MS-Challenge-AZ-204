@@ -731,5 +731,12 @@ az cdn endpoint create --name <endpoint_name> --profile-name <profile_name> --re
 
 For more information, visit the [Azure CDN documentation](https://docs.microsoft.com/en-us/azure/cdn/).
 
+# Hands-On Netflix Catalog
+A lab for managing the Netflix Catalog using Azure Functions and Cosmos DB. Create a front end in Python using streamlit.io;
+
+
+![alt text](image-5.png)
+
+
 ## Contact
 For any questions or feedback, please open an issue on the [GitHub repository](https://github.com/Raphaellaucene/AZ-204-FileApp).
